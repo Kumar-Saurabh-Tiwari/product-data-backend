@@ -1,0 +1,568 @@
+{
+  "info": {
+    "name": "ProductData API",
+    "description": "Complete REST API for scraping and managing product data from World of Books",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Scraper",
+      "item": [
+        {
+          "name": "Scrape Navigation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/navigation/scrape",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "navigation", "scrape"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Scrape Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryUrl\": \"https://www.worldofbooks.com/books/fiction\",\n  \"categoryTitle\": \"Fiction Books\",\n  \"navigationId\": \"\",\n  \"parentCategoryId\": \"\",\n  \"maxRetries\": 3,\n  \"timeoutMs\": 30000\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/category/scrape",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "category", "scrape"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Scrape Product Detail",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productUrl\": \"https://www.worldofbooks.com/books/the-great-gatsby\",\n  \"sourceId\": \"wob_gatsby\",\n  \"categoryId\": \"\",\n  \"maxRetries\": 3,\n  \"timeoutMs\": 30000\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/product/scrape",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "product", "scrape"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Batch Scrape Products",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"products\": [\n    {\n      \"productUrl\": \"https://www.worldofbooks.com/books/book-1\",\n      \"sourceId\": \"wob_1\",\n      \"categoryId\": \"\"\n    },\n    {\n      \"productUrl\": \"https://www.worldofbooks.com/books/book-2\",\n      \"sourceId\": \"wob_2\",\n      \"categoryId\": \"\"\n    }\n  ],\n  \"concurrency\": 3,\n  \"delayMs\": 1000\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/product/batch",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "product", "batch"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product Cache Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/product/cache-status?url=https://www.worldofbooks.com/books/the-great-gatsby",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "product", "cache-status"],
+              "query": [
+                {
+                  "key": "url",
+                  "value": "https://www.worldofbooks.com/books/the-great-gatsby"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refetch Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"507f191e810c19729de860ea\",\n  \"sourceUrl\": \"https://www.worldofbooks.com/books/the-great-gatsby\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/product/refetch",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "product", "refetch"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Job Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/jobs/job-id-here",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "jobs", "job-id-here"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Clear Cache",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/cache",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "cache"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Scraper Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/scraper/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "scraper", "health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Navigation",
+      "item": [
+        {
+          "name": "Get All Navigations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/navigations",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "navigations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Navigations with Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/navigations?withCategories=true",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "navigations"],
+              "query": [
+                {
+                  "key": "withCategories",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Navigation by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/navigations/507f1f77bcf86cd799439011",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "navigations", "507f1f77bcf86cd799439011"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Navigation by Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/navigations/slug/books",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "navigations", "slug", "books"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Navigation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Electronics\",\n  \"slug\": \"electronics\",\n  \"url\": \"https://www.worldofbooks.com/electronics\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/navigations",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "navigations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sync Navigation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/navigations/507f1f77bcf86cd799439011/sync",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "navigations", "507f1f77bcf86cd799439011", "sync"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Categories by Navigation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/categories?navigationId=507f1f77bcf86cd799439011",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "categories"],
+              "query": [
+                {
+                  "key": "navigationId",
+                  "value": "507f1f77bcf86cd799439011"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/categories/507f1f77bcf86cd799439012",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "categories", "507f1f77bcf86cd799439012"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category by Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/categories/slug/fiction",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "categories", "slug", "fiction"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/categories/507f1f77bcf86cd799439012/products?limit=20&skip=0",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "categories", "507f1f77bcf86cd799439012", "products"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "skip",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category Children",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/categories/507f1f77bcf86cd799439012/children",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "categories", "507f1f77bcf86cd799439012", "children"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Science Fiction\",\n  \"slug\": \"science-fiction\",\n  \"sourceUrl\": \"https://www.worldofbooks.com/books/fiction/sci-fi\",\n  \"navigationId\": \"507f1f77bcf86cd799439011\",\n  \"parentId\": \"507f1f77bcf86cd799439012\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sync Category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/categories/507f1f77bcf86cd799439012/sync",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "categories", "507f1f77bcf86cd799439012", "sync"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "Get Products by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/products/category/507f1f77bcf86cd799439012?limit=20&skip=0",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "products", "category", "507f1f77bcf86cd799439012"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "skip",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/products/507f191e810c19729de860ea",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "products", "507f191e810c19729de860ea"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceId\": \"wob_12345\",\n  \"sourceUrl\": \"https://www.worldofbooks.com/books/the-great-gatsby\",\n  \"title\": \"The Great Gatsby\",\n  \"author\": \"F. Scott Fitzgerald\",\n  \"price\": 8.99,\n  \"currency\": \"GBP\",\n  \"imageUrl\": \"https://example.com/gatsby.jpg\",\n  \"description\": \"A classic American novel\",\n  \"categoryId\": \"507f1f77bcf86cd799439012\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/products",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Batch Create Products",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"sourceId\": \"wob_1\",\n    \"sourceUrl\": \"https://www.worldofbooks.com/books/book-1\",\n    \"title\": \"Book 1\",\n    \"author\": \"Author 1\",\n    \"price\": 10.99,\n    \"currency\": \"GBP\",\n    \"imageUrl\": \"https://example.com/book1.jpg\"\n  },\n  {\n    \"sourceId\": \"wob_2\",\n    \"sourceUrl\": \"https://www.worldofbooks.com/books/book-2\",\n    \"title\": \"Book 2\",\n    \"author\": \"Author 2\",\n    \"price\": 12.99,\n    \"currency\": \"GBP\",\n    \"imageUrl\": \"https://example.com/book2.jpg\"\n  }\n]"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/products/batch",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "products", "batch"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Review to Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"author\": \"John Doe\",\n  \"rating\": 5,\n  \"text\": \"Amazing book! Highly recommended.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/products/507f191e810c19729de860ea/reviews",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "products", "507f191e810c19729de860ea", "reviews"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
